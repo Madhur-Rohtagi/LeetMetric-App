@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
            const response = await fetch(`https://alfa-leetcode-api.onrender.com/${username}/solved`);
 
+
             if(!response.ok){
                 throw new Error("Unable to fetch User details");
             }
@@ -51,7 +52,10 @@ document.addEventListener("DOMContentLoaded",()=>{
             displayUserData(data);
         } 
         catch (error) {
-            cardStatsContainer.innerHTML="<p>Too many requests/No Data found</p>"
+            statsContainer.style.setProperty("display", "flex");
+            statsContainer.style.setProperty("flex-direction", "column");
+            document.querySelector(".progress").style.display = "none";
+            cardStatsContainer.innerHTML = "<p>Too many requests / No Data found</p>";
         }
         finally{
             searchButton.textContent="Search";
@@ -67,6 +71,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     }
 
     function displayUserData(data){
+        document.querySelector(".progress").style.display = "flex";
         statsContainer.style.setProperty("display","flex");
         statsContainer.style.setProperty("flex-direction","column");
         const totalQues=4041;
